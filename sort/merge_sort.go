@@ -32,6 +32,7 @@ func merge(left, right []int) []int {
 	return x
 }
 
+// MergeSort is a merge sort implementation that sorts a slice of ints
 func MergeSort(inp []int) []int {
 	if len(inp) == 1 {
 		return inp
