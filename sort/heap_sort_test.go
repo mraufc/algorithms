@@ -1,6 +1,9 @@
 package sort
 
-import "testing"
+import (
+	"algorithms/utils"
+	"testing"
+)
 
 func TestHeapSort(t *testing.T) {
 	tests := []struct {
@@ -12,60 +15,72 @@ func TestHeapSort(t *testing.T) {
 			data: []int{31, 41, 59, 26, 41, 58},
 		},
 		{
+			name: "myList2",
+			data: []int{1, 3, 3, 3, 4},
+		},
+		{
+			name: "myList3",
+			data: []int{1, 4, 3, 3, 3},
+		},
+		{
+			name: "myList4",
+			data: []int{4, 3, 3, 3, 1},
+		},
+		{
 			name: "5 random integers",
-			data: randomInts(5),
+			data: utils.RandomInts(5),
 		},
 		{
 			name: "10 random integers",
-			data: randomInts(10),
+			data: utils.RandomInts(10),
 		},
 		{
 			name: "50 random integers",
-			data: randomInts(50),
+			data: utils.RandomInts(50),
 		},
 		{
 			name: "100 random integers",
-			data: randomInts(100),
+			data: utils.RandomInts(100),
 		},
 		{
 			name: "750 random integers",
-			data: randomInts(750),
+			data: utils.RandomInts(750),
 		},
 		{
 			name: "1000 random integers",
-			data: randomInts(1000),
+			data: utils.RandomInts(1000),
 		},
 		{
 			name: "10000 random integers",
-			data: randomInts(10000),
+			data: utils.RandomInts(10000),
 		},
 		{
 			name: "100000 random integers",
-			data: randomInts(100000),
+			data: utils.RandomInts(100000),
 		},
 		{
 			name: "120000 random integers",
-			data: randomInts(120000),
+			data: utils.RandomInts(120000),
 		},
 		{
 			name: "140000 random integers",
-			data: randomInts(140000),
+			data: utils.RandomInts(140000),
 		},
 		{
 			name: "160000 random integers",
-			data: randomInts(160000),
+			data: utils.RandomInts(160000),
 		},
 		{
 			name: "180000 random integers",
-			data: randomInts(180000),
+			data: utils.RandomInts(180000),
 		},
 		{
 			name: "200000 random integers",
-			data: randomInts(200000),
+			data: utils.RandomInts(200000),
 		},
 		{
 			name: "2000000 random integers",
-			data: randomInts(2000000),
+			data: utils.RandomInts(2000000),
 		},
 	}
 	for _, tt := range tests {

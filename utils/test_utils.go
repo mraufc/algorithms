@@ -1,11 +1,11 @@
-package sort
+package utils
 
 import (
 	"math/rand"
 	"time"
 )
 
-func randomInts(size int) []int {
+func RandomInts(size int) []int {
 	rand.Seed(time.Now().Unix())
 	if size <= 0 {
 		size = 0

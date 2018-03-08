@@ -5,20 +5,17 @@ type heap struct {
 	size int
 }
 
-type maxPriorityQueue struct {
-	data []int
-	size int
-}
+type maxPriorityQueue heap
 
-// operations
+// basic operations are modified for 0 indexed heap
 func parent(n int) int {
-	return n >> 1
+	return ((n + 1) >> 1) - 1
 }
 func left(n int) int {
-	return n << 1
+	return ((n + 1) << 1) - 1
 }
 func right(n int) int {
-	return (n << 1) + 1
+	return left(n) + 1
 }
 
 func buildMaxPriorityQueue(input []int) *maxPriorityQueue {

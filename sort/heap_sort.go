@@ -7,13 +7,13 @@ type heap struct {
 
 // operations
 func parent(n int) int {
-	return n >> 1
+	return ((n + 1) >> 1) - 1
 }
 func left(n int) int {
-	return n << 1
+	return ((n + 1) << 1) - 1
 }
 func right(n int) int {
-	return (n << 1) + 1
+	return left(n) + 1
 }
 
 func maxHeapify(h *heap, i int) {
