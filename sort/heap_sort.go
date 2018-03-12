@@ -5,7 +5,7 @@ type heap struct {
 	size int
 }
 
-// operations
+// basic operations are modified for 0 indexed heap
 func parent(n int) int {
 	return ((n + 1) >> 1) - 1
 }

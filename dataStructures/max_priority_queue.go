@@ -1,11 +1,19 @@
 package dataStructures
 
+import (
+	"fmt"
+)
+
 type heap struct {
 	data []int
 	size int
 }
 
 type maxPriorityQueue heap
+
+func (q *maxPriorityQueue) String() string {
+	return fmt.Sprint(q.data[:q.size])
+}
 
 // basic operations are modified for 0 indexed heap
 func parent(n int) int {
@@ -27,7 +35,6 @@ func buildMaxPriorityQueue(input []int) *maxPriorityQueue {
 }
 
 func (q *maxPriorityQueue) insert(k int) {
-	// TODO
 	q.size++
 	q.data = append(q.data, k-1)
 	q.increaseKey(q.size-1, k)
