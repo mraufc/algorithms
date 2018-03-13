@@ -27,6 +27,10 @@ func TestCompareSortAlgorithms(t *testing.T) {
 			data: []int{1, 3, 3, 3, 4},
 		},
 		{
+			name: "myList5",
+			data: []int{5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 8, 1, 3, 3, 3, 4, 8, 8, 8, 8, 7},
+		},
+		{
 			name: "5 random integers",
 			data: utils.RandomInts(5),
 		},
@@ -81,6 +85,8 @@ func TestCompareSortAlgorithms(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			quickSortData := make([]int, len(tt.data))
+			copy(quickSortData, tt.data)
 			heapSortData := make([]int, len(tt.data))
 			copy(heapSortData, tt.data)
 			mergeSortData := make([]int, len(tt.data))
@@ -88,14 +94,15 @@ func TestCompareSortAlgorithms(t *testing.T) {
 			InsertionSort(tt.data)
 			mergeSortData = MergeSort(mergeSortData)
 			HeapSort(heapSortData)
+			QuickSort(quickSortData)
 			for i := 1; i < len(tt.data); i++ {
 				if tt.data[i] < tt.data[i-1] {
-					t.Log("test case", tt.name, "failed", tt.data[:i+1], "reason:", tt.data[i], "is less than", tt.data[i-1])
+					t.Log("insertion sort for test case", tt.name, "failed", tt.data[:i+1], "reason:", tt.data[i], "is less than", tt.data[i-1])
 					t.FailNow()
 				}
 			}
 			for i := 0; i < len(tt.data); i++ {
-				if tt.data[i] != mergeSortData[i] || tt.data[i] != heapSortData[i] {
+				if tt.data[i] != mergeSortData[i] || tt.data[i] != heapSortData[i] || tt.data[i] != quickSortData[i] {
 					t.Log("test case", tt.name, "failed")
 					t.Log("position", i)
 					s := 0
@@ -109,6 +116,7 @@ func TestCompareSortAlgorithms(t *testing.T) {
 					t.Log("insertion sort data", tt.data[s:e])
 					t.Log("merge sort data", mergeSortData[s:e])
 					t.Log("heap sort data", heapSortData[s:e])
+					t.Log("quick sort data", quickSortData[s:e])
 					t.FailNow()
 				}
 			}
