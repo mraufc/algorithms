@@ -31,6 +31,10 @@ func TestCompareSortAlgorithms(t *testing.T) {
 			data: []int{5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 8, 1, 3, 3, 3, 4, 8, 8, 8, 8, 7},
 		},
 		{
+			name: "myList6",
+			data: []int{31, 59, 41, -59, 26, 41, 58, 1, 2, 3, -4, -5, -6, 7, 8, 100, -101},
+		},
+		{
 			name: "5 random integers",
 			data: utils.RandomInts(5),
 		},
@@ -91,6 +95,7 @@ func TestCompareSortAlgorithms(t *testing.T) {
 			copy(heapSortData, tt.data)
 			mergeSortData := make([]int, len(tt.data))
 			copy(mergeSortData, tt.data)
+			countingSortData := CountingSort(tt.data)
 			InsertionSort(tt.data)
 			mergeSortData = MergeSort(mergeSortData)
 			HeapSort(heapSortData)
@@ -102,7 +107,7 @@ func TestCompareSortAlgorithms(t *testing.T) {
 				}
 			}
 			for i := 0; i < len(tt.data); i++ {
-				if tt.data[i] != mergeSortData[i] || tt.data[i] != heapSortData[i] || tt.data[i] != quickSortData[i] {
+				if tt.data[i] != mergeSortData[i] || tt.data[i] != heapSortData[i] || tt.data[i] != quickSortData[i] || tt.data[i] != countingSortData[i] {
 					t.Log("test case", tt.name, "failed")
 					t.Log("position", i)
 					s := 0
@@ -117,6 +122,7 @@ func TestCompareSortAlgorithms(t *testing.T) {
 					t.Log("merge sort data", mergeSortData[s:e])
 					t.Log("heap sort data", heapSortData[s:e])
 					t.Log("quick sort data", quickSortData[s:e])
+					t.Log("counting sort data", countingSortData[s:e])
 					t.FailNow()
 				}
 			}
