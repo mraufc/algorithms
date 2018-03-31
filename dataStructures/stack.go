@@ -77,6 +77,7 @@ func (s *Stack) Pop() (interface{}, error) {
 	return s.elements[s.elementCount], nil
 }
 
+// GetElementCount returns the number of elements in the stack
 func (s *Stack) GetElementCount() int {
 	return s.elementCount
 }
