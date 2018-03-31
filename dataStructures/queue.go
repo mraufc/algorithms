@@ -79,3 +79,8 @@ func (q *Queue) Dequeue() (interface{}, error) {
 	q.increment = 1
 	return r, nil
 }
+
+// GetElementCount returns the number of elements in the queue
+func (q *Queue) GetElementCount() int {
+	return q.elementCount
+}
