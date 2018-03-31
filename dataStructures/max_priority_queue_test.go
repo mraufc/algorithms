@@ -32,15 +32,15 @@ func TestMaxPriorityQueue(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			h := buildMaxPriorityQueue(tc.data)
+			h := NewMaxPriorityQueue(tc.data)
 			t.Log(h)
 			for i := 11; i <= 13; i++ {
-				h.insert(i)
+				h.Insert(i)
 				t.Log(h)
 			}
 			for i := 13; i >= 1; i-- {
 				t.Log(h)
-				if i != h.extractMaximum() {
+				if i != h.ExtractMaximum() {
 					t.FailNow()
 				}
 			}

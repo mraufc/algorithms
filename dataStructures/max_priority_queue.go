@@ -26,7 +26,8 @@ func right(n int) int {
 	return left(n) + 1
 }
 
-func buildMaxPriorityQueue(input []int) *maxPriorityQueue {
+// NewMaxPriorityQueue returns a new maximum priority queue
+func NewMaxPriorityQueue(input []int) *maxPriorityQueue {
 	q := &maxPriorityQueue{data: input, size: len(input)}
 	for i := (len(input) >> 1) - 1; i >= 0; i-- {
 		q.maxHeapify(i)
@@ -34,28 +35,31 @@ func buildMaxPriorityQueue(input []int) *maxPriorityQueue {
 	return q
 }
 
-func (q *maxPriorityQueue) insert(k int) {
+// Insert inserts a new element to the queue
+func (q *maxPriorityQueue) Insert(k int) {
 	q.size++
 	q.data = append(q.data, k-1)
-	q.increaseKey(q.size-1, k)
+	q.IncreaseKey(q.size-1, k)
 }
 
-func (q *maxPriorityQueue) maximum() int {
+// Maximum returns the maximum element, i.e. the first element in the queue
+func (q *maxPriorityQueue) Maximum() int {
 	if q.size < 1 {
 		panic("heap underflow")
 	}
 	return q.data[0]
 }
 
-func (q *maxPriorityQueue) extractMaximum() int {
-	max := q.maximum()
+// ExtractMaximum extracts and returns the maximum element, and 'heapifies' the remaining elements
+func (q *maxPriorityQueue) ExtractMaximum() int {
+	max := q.Maximum()
 	q.data[0] = q.data[q.size-1]
 	q.size--
 	q.maxHeapify(0)
 	return max
 }
 
-func (q *maxPriorityQueue) increaseKey(i, k int) {
+func (q *maxPriorityQueue) IncreaseKey(i, k int) {
 	if q.data[i] >= k {
 		return
 	}
