@@ -1,6 +1,6 @@
 package dataStructures
 
-// Stack is the stack struct.
+// Stack is the stack struct. The structure is not thread-safe.
 type Stack struct {
 	maxCapacity  int
 	elementCount int
