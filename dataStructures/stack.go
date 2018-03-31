@@ -57,13 +57,17 @@ func (s *Stack) push(a interface{}) error {
 		return nil
 	}
 	n := len(s.elements) + s.increment
+	doubleIncr := true
 	if n > s.maxCapacity {
 		n = s.maxCapacity
+		doubleIncr = false
 	}
 	s.elements = append(s.elements, make([]interface{}, n-len(s.elements))...)
 	s.elements[s.elementCount] = a
 	s.elementCount++
-	s.increment *= 2
+	if doubleIncr {
+		s.increment *= 2
+	}
 	return nil
 }
 
