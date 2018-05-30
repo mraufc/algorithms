@@ -1,4 +1,4 @@
-package datastructures
+package queue
 
 // Queue is the queue implementation struct. This queue implementation is not thread-safe.
 type Queue struct {

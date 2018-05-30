@@ -1,4 +1,4 @@
-package datastructures
+package stack
 
 // Stack is the stack struct. The structure is not thread-safe.
 type Stack struct {
