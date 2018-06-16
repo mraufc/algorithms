@@ -85,18 +85,20 @@ func (t *Tree) Minimum() *KVPair {
 
 // minimum returns the minimum key value pair given a node
 func (n *node) minimum() *node {
-	if n.left == nil {
-		return n
+	v := n
+	for v.left != nil {
+		v = v.left
 	}
-	return n.left.minimum()
+	return v
 }
 
 // maximum returns the minimum key value pair given a node
 func (n *node) maximum() *node {
-	if n.right == nil {
-		return n
+	v := n
+	for v.right != nil {
+		v = v.right
 	}
-	return n.right.maximum()
+	return v
 }
 
 // Delete removes the node corresponding to the input key from the tree
@@ -111,11 +113,11 @@ func (t *Tree) Delete(key []byte) {
 		return
 	}
 	if n.left == nil {
-		t.transplant(n, n.right)
+		t.transplant(n, n.right) // n has no left child
 	} else if n.right == nil {
-		t.transplant(n, n.left)
+		t.transplant(n, n.left) // n has a left child but no right child
 	} else {
-		y := t.root.minimum()
+		y := n.right.minimum()
 		if y.parent != n {
 			t.transplant(y, y.right)
 			y.right = n.right
@@ -125,8 +127,10 @@ func (t *Tree) Delete(key []byte) {
 		y.left = n.left
 		y.left.parent = y
 	}
+	t.length--
 }
 
+// transplant replaces subtree that's rooted at u with the subtree that's rooted at v
 func (t *Tree) transplant(u, v *node) {
 	if u.parent == nil {
 		t.root = v
